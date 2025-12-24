@@ -13,7 +13,15 @@ const firebaseConfig = {
   measurementId: "G-38E2YQ6XD2",
 };
 
-// Initialize Firebase
-export const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+// Initialize Firebase only if API key is provided
+let app: any = null;
+let auth: any = null;
+let db: any = null;
+
+if (firebaseConfig.apiKey) {
+  app = initializeApp(firebaseConfig);
+  auth = getAuth(app);
+  db = getFirestore(app);
+}
+
+export { app, auth, db };

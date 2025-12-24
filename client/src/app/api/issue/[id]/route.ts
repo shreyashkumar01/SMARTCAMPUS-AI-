@@ -11,8 +11,11 @@ import {
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
+  if (!db) {
+    return NextResponse.json({ error: 'Firebase not configured' }, { status: 500 });
+  }
   const { id } = await params;
   try {
     // Query the issues collection by the "id" field of the document, not the Firestore document ID
@@ -33,6 +36,9 @@ export async function GET(
 }
 
 export async function POST(request: NextRequest) {
+  if (!db) {
+    return NextResponse.json({ error: 'Firebase not configured' }, { status: 500 });
+  }
   try {
     const data = await request.json();
     if (!data || !data.id || !data.category || !data.description || !data.status || !data.severity || !data.date) {

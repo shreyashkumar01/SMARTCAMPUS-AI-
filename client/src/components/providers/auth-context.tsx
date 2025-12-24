@@ -32,6 +32,12 @@ export const AuthProvider = ({
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    if (!auth) {
+      // Firebase not configured, simulate logged in for demo
+      setUser({} as User); // Fake user
+      setLoading(false);
+      return;
+    }
     const unsub = onAuthStateChanged(auth, async (user) => {
       setUser(user);
 
@@ -45,13 +51,21 @@ export const AuthProvider = ({
   }, []);
 
   const signup = async (email: string, password: string) => {
+    if (!auth) throw new Error("Firebase not configured");
     await createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = async (email: string, password: string) => {
+    if (!auth) throw new Error("Firebase not configured");
     await signInWithEmailAndPassword(auth, email, password);
   };
   const logout = async () => {
+    if (!auth) {
+      // Fake logout
+      setUser(null);
+      redirect("/");
+      return;
+    }
     await signOut(auth);
   };
 
