@@ -7,6 +7,8 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   User,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 import { auth } from "@/lib/firebase-config";
 import { redirect } from "next/navigation";
@@ -17,6 +19,7 @@ type AuthContextType = {
   signup: (email: string, password: string) => Promise<void>;
   login: (email: string, password: string) => Promise<void>;
   logout: () => Promise<void>;
+  googleAuth:()=>Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -34,7 +37,7 @@ export const AuthProvider = ({
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (user) => {
       setUser(user);
-
+      
       setLoading(false);
       if (!user && require) {
         redirect("/login");
@@ -54,9 +57,12 @@ export const AuthProvider = ({
   const logout = async () => {
     await signOut(auth);
   };
-
+const googleAuth = async () =>{
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth,provider);
+}
   return (
-    <AuthContext.Provider value={{ user, loading, signup, login, logout }}>
+    <AuthContext.Provider value={{ user, loading, signup, login, logout,googleAuth }}>
       {children}
     </AuthContext.Provider>
   );
