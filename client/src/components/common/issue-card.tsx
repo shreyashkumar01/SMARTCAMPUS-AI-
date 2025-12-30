@@ -1,11 +1,11 @@
-import React from 'react'
-
-
+"use client";
+import { motion } from "motion/react";
 type IssueStatus = "active" | "resolved" | "critical" | "rejected";
 
 interface Issue {
   id: string;
   title: string;
+  key?:any;
   description: string;
   date: string;
   status: IssueStatus;
@@ -24,10 +24,9 @@ const IssueCard = ({ issue }: { issue: Issue }) => {
     }
   };    
   return (
-    <div className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6 items-start">
+    <motion.div layoutId={`issueCard-${issue.id}`} className="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row gap-6 items-start">
       
-      {/* 1. Image / Thumbnail */}
-      <div className="w-full md:w-32 h-32 flex-shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
+      <div className="w-full md:w-32 h-32 shrink-0 bg-gray-100 rounded-lg overflow-hidden border border-gray-100">
         {issue.images.length > 0 ? (
           <img 
             src={issue.images[0]} 
@@ -41,12 +40,9 @@ const IssueCard = ({ issue }: { issue: Issue }) => {
           </div>
         )}
       </div>
-
-      {/* 2. Content */}
       <div className="flex-1 w-full">
         <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-2">
           
-          {/* Title and Badge */}
           <div>
             <div className="flex items-center gap-3 mb-1">
               <h3 className="text-lg font-bold text-gray-900">{issue.title}</h3>
@@ -71,8 +67,6 @@ const IssueCard = ({ issue }: { issue: Issue }) => {
         <p className="text-gray-600 text-sm leading-relaxed mb-4">
           {issue.description}
         </p>
-
-        {/* Actions (View Details placeholder) */}
         <div className="flex gap-3 border-t border-gray-100 pt-3 mt-auto">
           <button className="text-sm font-semibold text-gray-500 hover:text-blue-600 transition-colors flex items-center gap-1">
             View Details 
@@ -80,7 +74,7 @@ const IssueCard = ({ issue }: { issue: Issue }) => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

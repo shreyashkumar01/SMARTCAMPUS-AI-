@@ -25,7 +25,7 @@ import {
   Legend,
   CartesianGrid,
 } from "recharts";
-import { useChartData, useRecents, useSummary } from "../hooks/useDashboard";
+import { useChartData, useRecents, useSummary } from "../hooks/use-dashboard";
 import {
   Card,
   CardContent,
@@ -207,7 +207,7 @@ const UserDashBoard = () => {
           />
         ))}
       </DashboardHeader>
-      <DashboardContent>
+      <DashboardContent className="grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[400px]">
         <Suspense fallback={<Loader />}>
         <PinnedMap className="h-full w-full rounded-md md:row-span-2 overflow-hidden" />
         </Suspense>

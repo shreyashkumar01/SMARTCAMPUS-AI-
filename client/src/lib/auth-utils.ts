@@ -1,7 +1,7 @@
 import { NextRequest } from "next/server";
-import { auth } from "../../lib/firebase-config";
+import { auth } from "./firebase-config";
 
-export async function getUserIdFromRequest(request: NextRequest): Promise<{ userId: string | null; email: string | null }> {
+export async function getUserIdFromRequest(request: NextRequest): Promise<{ userId?: string|null; email?: string|null }> {
   try {
     const userId = request.headers.get("X-User-Id");
     return { userId};

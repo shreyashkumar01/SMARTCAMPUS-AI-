@@ -78,7 +78,7 @@ const userDashboardDummyData = {
 export async function GET() {
 /*********************************************************************************************************************
  *                                                       TODO:                                                       *
- * USE FIREBASE ADMIN FOR USER ID FETCH AND FROM CORRESPONDING ID FECTH DATA FORM FIRESTIRE AND CONVERT IT IN ABOVE FORMAT *
+ * USE FIREBASE ADMIN FOR USER ID FETCH AND FROM CORRESPONDING ID FECTH DATA FORM FIRESTORE AND CONVERT IT IN ABOVE FORMAT *
  *********************************************************************************************************************/
 await new Promise((resolve) => setTimeout(resolve, 300));
   return NextResponse.json(userDashboardDummyData, { status: 200 });

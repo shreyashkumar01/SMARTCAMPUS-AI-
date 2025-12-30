@@ -1,10 +1,11 @@
 import { useSuspenseQuery } from "@tanstack/react-query";
-import { getCurrentUserId} from "@/components/helpers/auth-helper";
+import { getCurrentUserId} from "@/lib/auth-utils";
+import { unauthorized } from "next/navigation";
 
 const fetchDashboard = async () => {
   const userId = getCurrentUserId();
   if (!userId) {
-    throw new Error("User not authenticated");
+    unauthorized();
   }
   const res = await fetch("/api/user/dashboard", {
     cache: "no-store",
@@ -15,18 +16,17 @@ const fetchDashboard = async () => {
   
   if (!res.ok) {
     if (res.status === 401) {
-      throw new Error("Authentication required. Please login again.");
+     unauthorized();
     }
     throw new Error("Failed to fetch dashboard data");
   }
-
   return res.json();
 };
 
 
 export const useDashboardData = () => {
   return useSuspenseQuery({
-    queryKey: ["dashboard"],
+    queryKey: ["user/dashboard"],
     queryFn: fetchDashboard,
     staleTime: 5 * 60 * 1000, 
   });

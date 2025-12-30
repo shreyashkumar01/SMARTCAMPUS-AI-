@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
-import { getUserIdFromRequest } from "@/components/helpers/auth-helper";
+import { getUserIdFromRequest } from "@/lib/auth-utils";
 
 export async function GET(request: NextRequest) {
   try {
