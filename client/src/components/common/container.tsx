@@ -5,7 +5,7 @@ type ContainerSize = "full" |"xtraLarge"| "medium" | "large" | "small";
 type PaddingSize = "small" | "medium" | "large"|"none";
 
 export type ContainerProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
   as?: React.ElementType;
   style?: React.CSSProperties;

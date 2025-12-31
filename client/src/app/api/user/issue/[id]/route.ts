@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/firebase-admin";
-import { getUserIdFromRequest } from "@/components/helpers/auth-helper";
+import { getUserIdFromRequest } from "@/lib/auth-utils";
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { userId } = await getUserIdFromRequest(request);
@@ -15,7 +15,7 @@ export async function GET(
       );
     }
 
-    const issueId = params.id;
+    const issueId =(await params).id;
 
     if (!issueId) {
       return NextResponse.json(

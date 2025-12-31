@@ -124,7 +124,7 @@ const DashboardContent = ({
 }: Readonly<ContainerProps>) => {
   return (
     <Container
-      className={cn("grid grid-cols-1 md:grid-cols-2 gap-4 auto-rows-[400px]", className)}
+      className={cn("space-y-4", className)}
       size={size}
       padding={padding}
       {...props}
