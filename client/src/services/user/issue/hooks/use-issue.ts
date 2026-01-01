@@ -10,9 +10,6 @@ export interface UserIssue {
   status?: string;
   location?: string;
   images?: string[];
-  createdAt?: string;
-  userId?: string;
-  ai_summary?: string;
 }
 
 export const useFetchIssues = () => {
@@ -25,7 +22,6 @@ export const useFetchIssues = () => {
         unauthorized();
       }
       const token = await user.getIdToken();
-      console.log(token);
       const res = await fetch("/api/user/issue/fetch", {
         headers: { "X-User-Id": token },
       });

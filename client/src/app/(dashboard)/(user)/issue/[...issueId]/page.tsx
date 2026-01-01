@@ -83,7 +83,6 @@ const IssueDetailContent = ({ issueId }: { issueId: string }) => {
                 </div>
               </div>
             )}
-            {/* End: Description and AI summary */}
           </div>
           <div className="text-sm text-gray-500">
             <div className="flex items-center gap-1 mb-1">
@@ -122,7 +121,6 @@ const IssueDetailContent = ({ issueId }: { issueId: string }) => {
           <h2 className="text-lg font-semibold text-gray-900 mb-6">Images</h2>
           <div className="space-y-6">
             {issue.images.map((image, index) => {
-              // Enhanced Cloudinary URL with transformations for better quality
               const enhancedImageUrl = image.replace('/upload/', '/upload/c_fill,w_800,h_600,q_auto,f_auto/');
               return (
                 <div key={index} className="flex justify-center">
@@ -152,7 +150,6 @@ const IssueDetailContent = ({ issueId }: { issueId: string }) => {
             </div>
           </div>
           <div className="md:w-1/2 flex flex-col items-start">
-            {/* Center label above map and left align map itself */}
             <label className="block text-sm font-medium text-gray-700 mb-2 w-full text-center">Location</label>
             <div className="bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-600 border w-full">
               <PinnedMap className="w-full" location={issue.location} />
