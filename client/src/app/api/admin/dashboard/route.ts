@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-// Mock data (for checking purpose)
+
 let issuesDB = [
   {
     id: "101",
