@@ -13,7 +13,7 @@ const firebaseConfig = {
   measurementId: "G-38E2YQ6XD2",
 };
 
-// Initialize Firebase only if API key is provided
+
 let app: any = null;
 let auth: any = null;
 

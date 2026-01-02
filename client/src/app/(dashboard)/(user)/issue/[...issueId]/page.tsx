@@ -7,6 +7,7 @@ import { motion } from "motion/react";
 import Loader from "@/components/common/loader";
 import { Suspense } from "react";
 import { PinnedMap } from "@/components/common/pinned-map";
+import Container from "@/components/common/container";
 
 interface Issue {
   id: string;
@@ -152,7 +153,7 @@ const IssueDetailContent = ({ issueId }: { issueId: string }) => {
           <div className="md:w-1/2 flex flex-col items-start">
             <label className="block text-sm font-medium text-gray-700 mb-2 w-full text-center">Location</label>
             <div className="bg-gray-50 rounded-lg px-3 py-2 text-sm text-gray-600 border w-full">
-              <PinnedMap className="w-full" location={issue.location} />
+              <PinnedMap className="w-full"  />
             </div>
           </div>
         </div>
@@ -177,7 +178,9 @@ const IssueDetailPage = () => {
 
   return (
     <Suspense fallback={<Loader />}>
+      <Container size="full" >
       <IssueDetailContent issueId={issueId} />
+      </Container>
     </Suspense>
   );
 };

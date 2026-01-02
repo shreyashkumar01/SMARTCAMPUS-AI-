@@ -1,3 +1,7 @@
+import LandingPage from "@/components/landing-page";
+
 export default function page() {
- return null
+ return (
+    <LandingPage />
+ )
 }
